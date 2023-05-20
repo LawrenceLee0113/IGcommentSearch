@@ -21,6 +21,7 @@ ${item.map((item) => `
 
 $(document).ready(function () {
     // console.log("ready!");
+    alert("jq onload~")
     var commentData = {}
     var ticketData = {}
     $.ajax({
