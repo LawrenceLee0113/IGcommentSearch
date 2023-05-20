@@ -20,7 +20,6 @@ ${item.map((item) => `
 `
 
 $(document).ready(function () {
-    alert("jq onload~")
 
     // console.log("ready!");
     var commentData = {}
