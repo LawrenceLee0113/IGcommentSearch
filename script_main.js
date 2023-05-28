@@ -25,22 +25,24 @@ $(document).ready(function () {
     var ticketData = {}
     $.ajax({
         type: "GET",
-        url: "/data/igexport.json",
+        url: "../data/igexport.json",
         data: {},
         dataType: "json",
         success: function (response) {
             commentData = response;
             console.log("igexport載入資料成功");
+            $("#load_hint").html(`${$("#load_hint").html()} 留言資料載入成功`);
         }
     });
     $.ajax({
         type: "GET",
-        url: "/data/ticket_num.json",
+        url: "../data/ticket_num.json",
         data: {},
         dataType: "json",
         success: function (response) {
             ticketData = response;
             console.log("ticket_num載入資料成功");
+            $("#load_hint").html(`${$("#load_hint").html()} 票號資料載入成功`);
         }
     });
 
