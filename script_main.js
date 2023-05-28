@@ -2,7 +2,7 @@ const dataItem = (...item) => `
 <div class="card">
 <div class="card-body">
 <div class="row">
-<div class="col-md-4">
+<div class="col-12">
 
 ${item.map((item) => `
     <div class="d-flex justify-content-between">
@@ -46,6 +46,11 @@ $(document).ready(function () {
 
     $("#ticket-search button").click(function (e) {
         e.preventDefault();
+
+        
+    })
+    $("#ticket-search input").keyup(function (e) {
+        e.preventDefault();
         // Search By ticket-id
 
         var ticketId = $("#ticket-input").val();
@@ -60,33 +65,39 @@ $(document).ready(function () {
 
                 // 以搜尋到流水號 以流水號去搜尋IG
 
+                let comments = []
                 let counter = 0
                 for (data2 of commentData) {
                     if (data2["Name"] == data["IG 帳號"]) {
                         counter++;
-                        $("#ticket-search .output").append(dataItem(
-                            ["姓名", data["姓名"]],
-                            ["IG 帳號", data["IG 帳號"]],
-                            ["學號", data["學號"]],
-                            ["流水號", data["流水號"]],
-                            ["留言資料","-----"],
-                            ["Comment", data2["Comment"]],
-                            ["Date", data2["Date"]]
-                        ));
+                        comments.push(
+                            [`Comment${counter}`, data2["Comment"].replaceAll("@",`<mark style="background: mark!important">@</mark>`)],
+
+                        );
+                        comments.push(
+                            [`Date${counter}`,data2["Date"] ],
+                        );
+                        // if(counter == 1){
+                        //     window.open(`https://www.instagram.com/${data["IG 帳號"]}/following/`, '_blank');
+                        // }
                     }
 
                 }
-                if(counter == 0){
+
+                if (counter != 0){
+                    // console.log(comments)
+
                     $("#ticket-search .output").append(dataItem(
                         ["姓名", data["姓名"]],
                         ["IG 帳號", data["IG 帳號"]],
                         ["學號", data["學號"]],
                         ["流水號", data["流水號"]],
+                        ["追蹤者列表",`<a href="https://www.instagram.com/${data["IG 帳號"]}/following/" target="_blank">${data["IG 帳號"]}ㄉ列表</a>`],
                         ["留言資料","-----"],
-                        ["Comment", "查無此資料"],
-                        ["Date", "查無此資料"]
+                        ...comments
                     ));
                 }
+
             }
         }
     });
