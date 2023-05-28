@@ -51,8 +51,8 @@ $(document).ready(function () {
 
         
     })
-    // $("#ticket-search input").keyup(function (e) {
-    $("#ticket-search button").click(function (e) {
+    $("#ticket-search input").keyup(function (e) {
+    // $("#ticket-search button").click(function (e) {
         e.preventDefault();
         // Search By ticket-id
 
