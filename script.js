@@ -55,7 +55,7 @@ $(document).ready(function () {
         $("#ig-search .output").empty();
 
         for (data of commentData) {
-            if (data["Name"].includes(ig)) {
+            if (`${data["Name"]}`.includes(ig)) {
                 $("#ig-search .output").append(dataItem(
                     ["IG", data["Name"]],
                     ["Comment", data["Comment"]],
